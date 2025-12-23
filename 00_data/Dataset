@@ -21,7 +21,7 @@ La tabella seguente riassume le informazioni associate a ciascuna specie inclusa
 | GCF_013758885.1  | *Anopheles albimanus*    | Anoalb |
 | GCF_013141755.1  | *Anopheles stephensi*    | Anoste |
 | GCF_XXXXXXXXXX.X | *Anopheles funestus*     | Anofun |
-| GCF_XXXXXXXXXX.X | *Anopheles culicifacies* | Anocul |
+| GCF_943734845.2  | *Anopheles culicifacies* | Anocul |
 
 L’**Accession number** rappresenta l’identificativo univoco del genoma nella banca dati NCBI ed è stato utilizzato come riferimento per il download delle sequenze genomiche e dei file di annotazione associati.
 
