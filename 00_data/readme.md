@@ -1,10 +1,10 @@
-#Analisi genomica comparativa nel genere *Anopheles*
+# Analisi genomica comparativa nel genere *Anopheles*
 
-##Dataset
+## Dataset
 
 Per rispondere alla domanda biologica di interesse, è stato costruito un dataset comprendente **sei specie appartenenti al genere *Anopheles*** (famiglia Culicidae). Le specie sono state selezionate in modo da rappresentare **linee evolutive differenti**, includendo membri del **complesso *Anopheles gambiae***, specie filogeneticamente più distanti e taxa provenienti da differenti aree biogeografiche (Africa, Asia e Nuovo Mondo).
 
-##Domanda biologica
+## Domanda biologica
 
 L’analisi mira a investigare le **relazioni filogenetiche tra specie del genere *Anopheles*** e a valutare se il **complesso *Anopheles gambiae*** presenti un pattern evolutivo distinto rispetto alle altre linee del genere, in termini di divergenza filogenetica ed evoluzione delle famiglie geniche.
 
