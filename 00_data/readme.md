@@ -110,7 +110,3 @@ Questa scelta riflette l’ipotesi di differenti tassi di guadagno e perdita gen
 * Bash
 
 ---
-
-## Note
-
-Le lunghezze dei rami dell’albero ML rappresentano il numero di sostituzioni per sito e **non devono essere interpretate come tempi di divergenza**.
