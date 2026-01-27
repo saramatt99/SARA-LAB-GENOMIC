@@ -1,70 +1,71 @@
-# Genome Annotation Pipeline
+# Genome Annotation
 
-L'annotazione rappresenta la fase cruciale successiva all'assemblaggio: è il processo in cui la sequenza genomica grezza viene analizzata per identificare e descrivere le entità biologiche presenti, come geni codificanti, pseudogeni, trasposoni, ncRNA e tRNA. In termini pratici, l'obiettivo è assegnare una funzione biologica e una coordinata precisa a quella che, inizialmente, è solo una stringa anonima di nucleotidi.
+L'annotazione rappresenta la fase cruciale che segue l'assemblaggio di un genoma. In questo stadio, la sequenza genomica grezza viene analizzata per identificare e descrivere le entità funzionali presenti, come sequenze codificanti (CDS), pseudogeni, trasposoni, ncRNA e tRNA. L'obiettivo operativo è trasformare una sequenza anonima di nucleotidi in una mappa biologica, associando coordinate precise a funzioni specifiche.
 
-Il workflow si basa su cicli iterativi (round) in cui algoritmi di predizione vengono progressivamente addestrati per affinare la capacità di identificazione dei geni.
+Il workflow viene solitamente eseguito in diversi round iterativi: ogni passaggio permette agli algoritmi di affinare i propri modelli statistici, migliorando progressivamente la sensibilità e la precisione nell'identificazione dei geni.
 
 ---
 
-## 1. Identificazione degli Elementi Ripetuti
-Poiché il focus del progetto è sulle regioni codificanti, è fondamentale individuare e "mascherare" gli elementi ripetitivi, che presentano caratteristiche strutturali diverse dai geni.
-* **Tool utilizzati:** `RepeatModeler` per la creazione di librerie di ripetizioni e `RepeatMasker` per il mascheramento.
+### 1. Annotazione degli Elementi Ripetuti
 
-## 2. Configurazione ed Esecuzione di MAKER
-**MAKER** è l'orchestratore principale utilizzato per l'annotazione. Il processo inizia con la generazione dei file di controllo necessari per definire i parametri di analisi:
+In questo progetto, il focus primario è rivolto alle regioni codificanti del genoma. È quindi indispensabile identificare e "mascherare" preventivamente i **repetitive elements** (elementi ripetuti), poiché le loro caratteristiche strutturali potrebbero trarre in inganno gli algoritmi di predizione genica.
+* **Tool utilizzati:** Per la gestione di queste sequenze sono stati impiegati software come `RepeatModeler` (per l'identificazione *de novo*) e `RepeatMasker` (per il mascheramento).
+
+---
+
+### 2. Generazione dell'Annotazione con MAKER
+
+Il cuore della pipeline di annotazione è **MAKER**. Per configurare correttamente l'analisi, il software richiede la generazione di file di controllo (`.ctl`) tramite il comando:
 
 ```bash
 maker -CTL
-Configurazione del file maker_opts.ctl
-Per questo progetto, il software è stato configurato integrando il proteoma di A. stephensis come evidenza di omologia. Di seguito i parametri principali impostati:
+Dopo aver configurato i file (integrando, in questo caso, il proteoma della specie A. stephensis come evidenza di omologia), si procede all'esecuzione del programma. Di seguito sono riportati i parametri principali impostati nel file di configurazione:
 
 Plaintext
-#-----Genome
+#-----Genome (Required)
 genome= <GENOME_FILE> 
-organism_type=eukaryotic
+organism_type=eukaryotic 
 
 #-----Protein Homology Evidence
-protein= <PROTEOME_FILE> 
+protein= <PROTEOME_FILE> # Proteoma di A. stephensis
 
 #-----Repeat Masking
-rmlib= <REPEAT_LIBRARY>
+rmlib= <REPEAT_LIBRARY> 
 softmask=1 
 
 #-----Gene Prediction
-snaphmm= <SNAP_HMM>
-augustus_species= <SPECIES_MODEL>
-protein2genome=1
-Per ottimizzare la directory di lavoro ed eliminare i file intermedi dopo il run, si utilizza:
+snaphmm= <SNAP_HMM_FILE>
+augustus_species= <AUGUSTUS_MODEL>
+protein2genome=1 
+Al termine dell'elaborazione, per pulire la directory di lavoro dai file intermedi e organizzare l'output, si utilizza:
 
 Bash
 maker -base <OUTPUT_PREFIX>
 3. Consolidamento dei Risultati
-Dopo l'elaborazione, è necessario estrarre e unificare le informazioni frammentate nei vari file di output in un unico database consultabile (formato .gff) e nelle relative sequenze fasta (proteine e trascritti).
+Per rendere i risultati fruibili, le informazioni frammentate generate da MAKER devono essere unificate in un unico file .gff (che contiene le coordinate e le annotazioni) e nei relativi file FASTA (sequenze proteiche e nucleotidiche).
 
 Bash
-# Merge dei file di output
+# Unificazione dei dati estratti
 fasta_merge -d <DATASTORE_INDEX_FILE>
 gff3_merge -d <DATASTORE_INDEX_FILE>
-Il file .gff finale contiene la mappatura dettagliata di ogni sequenza riconosciuta come codificante, suddivisa in colonne standardizzate.
-
 4. Algoritmi di Predizione Genica
-La pipeline sfrutta due software principali che operano secondo logiche complementari:
+La pipeline integra due software specializzati per l'identificazione delle sequenze codificanti:
 
-SNAP (Semi-HMM-based Nucleic Acid Parser): Un programma flessibile per genomi eucariotici e procariotici. Viene addestrato su modelli genetici noti per elevare la qualità dell'annotazione.
+SNAP (Semi-HMM-based Nucleic Acid Parser): Un programma di ricerca genica adattabile che viene addestrato su set di geni noti per ottimizzare la qualità della predizione.
 
-AUGUSTUS: Un predittore che può operare in modalità ab initio. A differenza dei metodi basati sulla somiglianza, i modelli ab initio si affidano esclusivamente a proprietà statistiche intrinseche della sequenza di DNA.
+AUGUSTUS: Un software di predizione che può operare in modalità Ab initio.
 
-Sintesi del Processo Iterativo
-L'annotazione non è un passaggio unico, ma un ciclo di miglioramento continuo:
+Nota: I modelli Ab initio non si basano sulla somiglianza con sequenze già depositate in database, ma sfruttano esclusivamente le proprietà statistiche intrinseche del DNA (come la composizione in basi e i siti di splicing) per predire la struttura genica.
 
-Mascheramento degli elementi ripetitivi.
+5. Sintesi del Workflow Iterativo
+Il processo di annotazione può essere riassunto nei seguenti passaggi chiave:
 
-Allineamento di evidenze esterne (es. proteomi).
+Masking: Identificazione e mascheramento delle ripetizioni genomiche.
 
-Estrazione di modelli genici iniziali ad alta affidabilità.
+Evidence Alignment: Utilizzo di evidenze esterne (es. proteoma) per guidare la ricerca.
 
-Training di SNAP e AUGUSTUS sui modelli estratti.
+Model Training: Estrazione di un set iniziale di modelli genici ad alta confidenza.
 
-Esecuzione di round successivi per raffinare la predittività.
+Iterazione: Addestramento di SNAP e AUGUSTUS e ripetizione dei round per affinare la precisione.
 
-Validazione e generazione del consenso finale.
+Consensus & Evaluation: Creazione di un set di geni di consenso e valutazione finale dell'annotazione.
