@@ -1,0 +1,124 @@
+IQ-TREE 2.4.0 built Feb 12 2025
+
+Input file name: conc_species_tree
+Type of analysis: tree reconstruction
+Random seed number: 95282
+
+REFERENCES
+----------
+
+To cite IQ-TREE please use:
+
+Bui Quang Minh, Heiko A. Schmidt, Olga Chernomor, Dominik Schrempf,
+Michael D. Woodhams, Arndt von Haeseler, and Robert Lanfear (2020)
+IQ-TREE 2: New models and efficient methods for phylogenetic inference
+in the genomic era. Mol. Biol. Evol., in press.
+https://doi.org/10.1093/molbev/msaa015
+
+Since you used least square dating (LSD) please also cite: 
+
+Thu-Hien To, Matthieu Jung, Samantha Lycett, Olivier Gascuel (2016)
+Fast dating using least-squares criteria and algorithms. Syst. Biol. 65:82-97.
+https://doi.org/10.1093/sysbio/syv068
+
+SEQUENCE ALIGNMENT
+------------------
+
+Input data: 6 sequences with 131268 amino-acid sites
+Number of constant sites: 90560 (= 68.9886% of all sites)
+Number of invariant (constant or ambiguous constant) sites: 90560 (= 68.9886% of all sites)
+Number of parsimony informative sites: 18734
+Number of distinct site patterns: 13975
+
+SUBSTITUTION PROCESS
+--------------------
+
+Model of substitution: Q.INSECT+F+I+R3
+
+State frequencies: (empirical counts from alignment)
+
+  pi(A) = 0.0713
+  pi(R) = 0.0557
+  pi(N) = 0.0471
+  pi(D) = 0.0515
+  pi(C) = 0.0188
+  pi(Q) = 0.0513
+  pi(E) = 0.0624
+  pi(G) = 0.0647
+  pi(H) = 0.0268
+  pi(I) = 0.0499
+  pi(L) = 0.0884
+  pi(K) = 0.0521
+  pi(M) = 0.0215
+  pi(F) = 0.0332
+  pi(P) = 0.0555
+  pi(S) = 0.0867
+  pi(T) = 0.0619
+  pi(W) = 0.0093
+  pi(Y) = 0.0302
+  pi(V) = 0.0616
+
+Model of rate heterogeneity: Invar+FreeRate with 3 categories
+Proportion of invariable sites: 0.4297
+Site proportion and rates:  (0.2276,0.4692) (0.2681,1.6069) (0.0746,6.1970)
+
+ Category  Relative_rate  Proportion
+  0         0              0.4297
+  1         0.4692         0.2276
+  2         1.6069         0.2681
+  3         6.1970         0.0746
+
+MAXIMUM LIKELIHOOD TREE
+-----------------------
+
+Log-likelihood of the tree: -685425.0950 (s.e. 1185.8656)
+Unconstrained log-likelihood (without tree): -727059.5563
+Number of free parameters (#branches + #model parameters): 33
+Akaike information criterion (AIC) score: 1370916.1901
+Corrected Akaike information criterion (AICc) score: 1370916.2072
+Bayesian information criterion (BIC) score: 1371239.0950
+
+Total tree length (sum of branch lengths): 0.7494
+Sum of internal branch lengths: 0.1472 (19.6374% of tree length)
+
+NOTE: Tree is UNROOTED although outgroup taxon 'Anoalb' is drawn at root
+
++----------------------------------------------------------Anoalb
+|
+|             +--Anoara
++-------------|
+|             +--Anogam
+|
+|               +**Anocul
+|     +---------|
+|     |         +**Anofun
++-----|
+      +-----------Anoste
+
+Tree in newick format:
+
+(Anoalb:0.4200150117,(Anoara:0.0046640808,Anogam:0.0119526654):0.1010452626,((Anocul:0.0000007042,Anofun:0.0000007042):0.0748861396,Anoste:0.0906840943):0.0461093760);
+
+ALISIM COMMAND
+--------------
+To simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis, you can use the following command:
+
+--alisim simulated_MSA -t time_tree.treefile -m "Q.INSECT+F+I{0.429695}+R3{0.227551,0.469154,0.268142,1.60688,0.0746119,6.19702}" --length 131268
+
+To mimic the alignment used to produce this analysis, i.e. simulate an alignment of the same length as the original alignment, using the tree and model parameters estimated from this analysis *and* copying the same gap positions as the original alignment, you can use the following command:
+
+iqtree -s conc_species_tree --alisim mimicked_MSA
+
+To simulate any number of alignments in either of the two commandlines above, use the --num-alignments options, for example mimic 100 alignments you would use the command line:
+
+iqtree -s conc_species_tree --alisim mimicked_MSA --num-alignments 100
+
+For more information on using AliSim, please visit: www.iqtree.org/doc/AliSim
+
+TIME STAMP
+----------
+
+Date and time: Tue Dec 23 00:15:47 2025
+Total CPU time used: 389.92992 seconds (0h:6m:29s)
+Total wall-clock time used: 30.609652 seconds (0h:0m:30s)
+
