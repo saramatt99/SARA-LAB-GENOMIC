@@ -6,10 +6,10 @@ In questa fase, l'albero filogenetico generato precedentemente (nella directory 
 Per ottenere i punti di calibrazione, è stata utilizzata la lista delle specie analizzate:
 
 * *Anopheles gambiae*
-* *Culex quinquefasciatus*
-* *Aedes aegypti*
-* *Aedes albopictus*
-* *Sabethes cyaneus*
+* *Anopheles albimanus*
+* *Anopheles funestus*
+* *Anopheles arabiensis*
+* *Anopheles sinensis*
 * *Anopheles stephensi*
 
 > **Nota:** Durante il reperimento dei dati (es. tramite TimeTree/iTOL), per *Anopheles stephensi* non erano disponibili informazioni dirette (segnalato da un asterisco). Di conseguenza, è stata utilizzata come riferimento la specie affine *Anopheles karwari*. La divergenza interna al genere *Anopheles* non viene quindi considerata come punto di calibrazione in questo step.
