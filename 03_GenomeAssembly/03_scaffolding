@@ -1,17 +1,1 @@
-Scaffolding
 
-In questa fase dell’assemblaggio genomico, si procede alla costruzione degli scaffold. Uno scaffold rappresenta una versione virtuale dei contig, ordinati secondo specifici criteri per riflettere la struttura cromosomica della specie studiata.
-
-Miglioramento e correzione
-
-Prima di creare gli scaffold, è possibile affinare la qualità dell’assemblaggio. Questo passaggio confronta l’assemblaggio preliminare con un genoma di riferimento, permettendo di correggere eventuali errori presenti nei contig.
-
-Per assemblaggi de novo, il genoma di riferimento dovrebbe appartenere a una specie filogeneticamente vicina a quella in studio.
-
-ragtag.py correct -t 20 <REFERENCE_GENOME> <DRAFT_GENOME>
-
-Assemblaggio a livello di scaffold
-
-Dopo la correzione, si procede con la generazione degli scaffold veri e propri. Questo processo unisce contig contigui o strutturalmente correlati in sequenze più lunghe e coerenti.
-
-ragtag.py scaffold -C -t 20 -o <OUTPUT_DIR> <REFERENCE_GENOME> <CORRECTED_DRAFT_GENOME>
