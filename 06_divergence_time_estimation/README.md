@@ -38,15 +38,7 @@ ln -s ../05_OG.Inference_Phylogenomic/04_trimmed/00_single_complete/conc_species
 Successivamente, si esegue **IQ-TREE** specificando il modello evolutivo (identificato nel file `.iqtree` precedente, qui `Q.INSECT+F+I+R3`) e passando il file di calibrazione.
 
 ```bash
-iqtree -s conc_species_tree \
-       --date calibration.txt \
-       --date-tip 0 \
-       -o Anoste,Anogam \
-       -m Q.INSECT+F+I+R3 \
-       -nt 13 \
-       --prefix time_tree \
-       --date-options "-u 1"
-
+iqtree -s conc_sp --date calibration.txt --date-tip 0 -m Q.INSECT+F+I+R3 -nt 13 --prefix time_tree --date-options "-u 1"
 ```
 
 * `--date`: specifica il file con i vincoli temporali.
