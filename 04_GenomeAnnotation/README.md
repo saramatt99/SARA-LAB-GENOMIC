@@ -2,7 +2,7 @@ Genome Annotation
 
 L’annotazione genomica è la fase successiva all’assemblaggio di un genoma e rappresenta il momento in cui vengono individuate e descritte tutte le componenti funzionali presenti nella sequenza ottenuta. Durante questo processo vengono riconosciuti diversi elementi, tra cui regioni codificanti per proteine, pseudogeni, elementi trasponibili, RNA non codificanti (ncRNA), tRNA e altre strutture genomiche rilevanti.
 
-L’obiettivo principale dell’annotazione consiste nell’associare una funzione biologica a porzioni di DNA che inizialmente rappresentano solo sequenze anonime di nucleotidi, assegnando a ciascun elemento una posizione specifica all’interno del genoma.
+L’obiettivo principale dell’annotazione consiste nell’associare una funzione biologica a porzioni di DNA che inizialmente rappresentano soltanto sequenze anonime di nucleotidi, assegnando a ciascun elemento una posizione specifica all’interno del genoma.
 
 Per svolgere questa attività vengono utilizzati software specializzati nella predizione genica, come SNAP e AUGUSTUS, che si basano su modelli statistici e possono essere addestrati per migliorare l’identificazione delle regioni codificanti. L’annotazione viene generalmente eseguita attraverso più round successivi, poiché ogni iterazione consente di affinare progressivamente l’accuratezza dei modelli predittivi.
 
@@ -120,4 +120,4 @@ Esecuzione di ulteriori round di annotazione per migliorare la predittività
 
 Creazione di un insieme di risultati di consenso
 
-Valutazione finale della qualità dell’annotazione
+Valutazione finale della qualità dell’annotazione****
