@@ -19,8 +19,10 @@ Sulla base delle stime ottenute, è stato generato il file `calibration.txt`. Il
 
 **Contenuto di `calibration.txt`:**
 ```text
-Anogam,Culqui,Aedaeg,Aedalb,Sabcya,Anoste -108.3
-Aedaeg,Aedalb -48.0
+Anogam,Anoara -1.5
+Anogam,Anoara,Anofun -25
+Anoste,Anoara,Anogam -20
+Anogam,Anoara,Anofun,Anocul,Anoste -45
 
 ```
 
