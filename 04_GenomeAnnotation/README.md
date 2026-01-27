@@ -29,3 +29,34 @@ Per iniziare vengono generati i file di configurazione tramite:
 
 ```bash
 maker -CTL
+
+## Configurazione dei file di controllo MAKER
+
+Questo comando crea una serie di file di controllo che permettono di impostare:
+
+- il **genoma assemblato**  
+- il **tipo di organismo** (eucariotico)  
+- il **proteoma di riferimento** della specie *A. stephensis*  
+- la **libreria di elementi ripetuti**  
+- i parametri per **SNAP** e **AUGUSTUS**
+
+Le principali sezioni configurabili includono:
+
+- genoma di input  
+- opzioni di ri-annotazione  
+- evidenze **EST/mRNA**  
+- omologie proteiche  
+- **repeat masking**  
+- predizione genica  
+- utilizzo delle **CPU**
+
+Una volta configurati i file, MAKER viene eseguito per produrre i risultati dell’annotazione.
+
+---
+
+## Riorganizzazione dei file di output
+
+Al termine dell’esecuzione di MAKER, la directory di lavoro può essere riorganizzata eliminando i file intermedi con:
+
+```bash
+maker -base <OUTPUT_PREFIX>
