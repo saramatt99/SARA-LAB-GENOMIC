@@ -12,7 +12,6 @@ Per ottenere i punti di calibrazione, è stata utilizzata la lista delle specie 
 * *Anopheles sinensis*
 * *Anopheles stephensi*
 
-> **Nota:** Durante il reperimento dei dati (es. tramite TimeTree/iTOL), per *Anopheles stephensi* non erano disponibili informazioni dirette (segnalato da un asterisco). Di conseguenza, è stata utilizzata come riferimento la specie affine *Anopheles karwari*. La divergenza interna al genere *Anopheles* non viene quindi considerata come punto di calibrazione in questo step.
 
 ### 2. Creazione del File di Calibrazione
 Sulla base delle stime ottenute, è stato generato il file `calibration.txt`. Il formato prevede l'elenco dei taxa coinvolti nel nodo e il tempo di divergenza (in milioni di anni).
