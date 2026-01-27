@@ -1,0 +1,4 @@
+#NEXUS
+Begin trees;
+tree 1 = (Anocul[&date="0"]:45,(((Anoalb[&date="0"]:19,(Anoara[&date="0"]:1.5,Anogam[&date="0"]:1.5)[&date="-1.5"]:17.5)[&date="-19"]:1,Anoste[&date="0"]:20)[&date="-20"]:5,Anofun[&date="0"]:25)[&date="-25"]:20)[&date="-45"];
+End;
