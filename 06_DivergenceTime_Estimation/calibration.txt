@@ -1,0 +1,4 @@
+Anogam,Anoara -1.5
+Anogam,Anoara,Anofun -25
+Anoste,Anoara,Anogam -20
+Anogam,Anoara,Anofun,Anocul,Anoste -45
