@@ -1,16 +1,20 @@
 # Analisi dell'Evoluzione delle Famiglie Geniche (CAFE)
 
-Per stimare i fenomeni di contrazione ed espansione delle famiglie geniche è stato utilizzato **CAFE 5** (Computational Analysis of gene Family Evolution). Il software applica un modello stocastico di tipo *birth-and-death* per simulare l'evoluzione delle dimensioni delle famiglie lungo l'albero filogenetico.
+Per stimare le dinamiche di contrazione ed espansione delle famiglie geniche è stato utilizzato **CAFE 5** (Computational Analysis of gene Family Evolution). Il software applica un modello stocastico di tipo *birth-and-death* per simulare l'evoluzione delle dimensioni delle famiglie lungo l'albero filogenetico.
 
 ---
 
 ## 1. Preparazione dei Dati
-L'analisi richiede due file di input fondamentali:
-1.  **Time Tree (.nwk):** Un albero filogenetico calibrato temporalmente.
-    * *Nota:* L'albero originale in formato `.nex` è stato convertito in formato Newick (`.nwk`) utilizzando il tool esterno [iTOL](https://itol.embl.de/), salvato come `timetree.nwk`.
-2.  **Tabella di Conteggio (.tsv):** File generato da OrthoFinder (`Orthogroups.GeneCount.tsv`).
 
-Prima dell'utilizzo, la tabella dei conteggi deve essere pulita rimuovendo l'ultima colonna (totale non necessario per CAFE):
+L'analisi richiede due file di input fondamentali:
+
+1. **Time Tree (.nwk):** Un albero filogenetico calibrato temporalmente.
+* *Nota:* L'albero originale in formato `.nex` è stato convertito in formato Newick (`.nwk`) utilizzando il tool esterno [iTOL](https://itol.embl.de/) e salvato come `timetree.nwk`.
+
+
+2. **Tabella di Conteggio (.tsv):** File generato da OrthoFinder (`Orthogroups.GeneCount.tsv`).
+
+Prima dell'utilizzo, la tabella dei conteggi deve essere formattata rimuovendo l'ultima colonna (totale complessivo), non richiesta da CAFE:
 
 ```bash
 sed $'s/^/NONE\t/g' Orthogroups.GeneCount.tsv | rev | cut -f 2- | rev > GeneCount_CAFE.tsv
@@ -21,7 +25,7 @@ sed $'s/^/NONE\t/g' Orthogroups.GeneCount.tsv | rev | cut -f 2- | rev > GeneCoun
 
 ## 2. Stima del Modello di Errore
 
-Il primo step consiste nel calcolare un modello di errore (*Error Model*) globale per il dataset, che verrà utilizzato per pesare le analisi successive.
+Il primo step consiste nel calcolare un modello di errore (*Error Model*) globale per il dataset. Questo permette di tenere conto dell'errore tecnico nell'assemblaggio o nell'annotazione durante le fasi successive.
 
 ```bash
 cafe5 -i GeneCount_CAFE.tsv -t timetree.nwk -o Error_model -e
@@ -32,71 +36,50 @@ cafe5 -i GeneCount_CAFE.tsv -t timetree.nwk -o Error_model -e
 
 ## 3. Parametrizzazione e Test dei Modelli
 
-L'analisi standard assume un tasso di evoluzione (, birth/death rate) uniforme per tutte le specie. Tuttavia, è possibile testare modelli più complessi per verificare se l'attribuzione di tassi specifici per cladi (modelli multi-) o l'aggiunta di una distribuzione Gamma (parametro ) per la variabilità tra famiglie migliori la likelihood.
+L'analisi standard di CAFE assume un tasso di evoluzione (, birth/death rate) uniforme per tutte le specie. Tuttavia, è possibile testare modelli più complessi per verificare se l'attribuzione di tassi specifici per cladi (modelli multi-) o l'aggiunta di una distribuzione Gamma (parametro ) migliori la likelihood del modello.
 
-Per valutare la robustezza dei risultati, vengono eseguiti **10 replicati tecnici** per **5 livelli di complessità parametrica** ( da 1 a 5).
+Per valutare la robustezza e la variabilità della risposta, vengono eseguiti **10 replicati tecnici** per **5 livelli di complessità parametrica** ( da 1 a 5).
 
 ### Analisi a 1 Lambda (Modello Uniforme)
 
-Esecuzione iterativa per testare diverse categorie Gamma () con un unico tasso di evoluzione per tutto l'albero.
+Si esegue un ciclo iterativo per testare diverse categorie Gamma () mantenendo un unico tasso di evoluzione () per tutto l'albero.
 
 ```bash
-for k in {1..5}; do 
-    for n in {1..10}; do 
-        mkdir -p 00_1L/${k}K/${n}N
-        cafe5 -i GeneCount_CAFE.tsv \
-              -t timetree.nwk \
-              -o 00_1L/${k}K/${n}N \
-              -e Error_model/Base_error_model.txt \
-              -k ${k}
-    done 
-done
-
+for k in {1..5}; do for n in {1..10}; do mkdir -p 00_1L/${k}K/${n}N cafe5 -i GeneCount_CAFE.tsv \ -t timetree.nwk \ -o 00_1L/${k}K/${n}N \ -e Error_model/Base_error_model.txt \ -k ${k}; done; done
 ```
 
 ### Analisi a 2 Lambda (Tassi Differenziati)
 
-Per testare ipotesi evolutive specifiche, si assegnano tassi diversi a rami diversi dell'albero tramite un file di mappatura (`timetree2L.nwk`).
-*Esempio di struttura dell'albero per 2 tassi (1 e 2):*
+Per testare ipotesi evolutive specifiche, si assegnano tassi diversi a rami specifici dell'albero tramite un file di mappatura (`timetree2L.nwk`).
+
+*Esempio di struttura dell'albero per 2 tassi (dove `:1` e `:2` indicano le categorie di lambda):*
 `((Anogam:2,Anoste:2):1,(Culqui:2,(Sabcya:1,(Aedalb:1,Aedaeg:1):1):1):1);`
 
 ```bash
-for k in {1..5}; do 
-    for n in {1..10}; do 
-        mkdir -p 00_2L/${k}K/${n}N
-        cafe5 -i GeneCount_CAFE.tsv \
-              -t timetree.nwk \
-              -o 00_2L/${k}K/${n}N \
-              -y timetree2L.nwk \
-              -e Error_model/Base_error_model.txt \
-              -k ${k}
-    done 
-done
+for k in {1..5}; do for n in {1..10}; do mkdir -p 00_2L/${k}K/${n}N cafe5 -i GeneCount_CAFE.tsv \ -t timetree.nwk \ -o 00_2L/${k}K/${n}N \ -y timetree2L.nwk \ -e Error_model/Base_error_model.txt \ -k ${k}; done; done
 
 ```
 
-> **Scelta del Modello:** All'aumentare dei parametri aumenta la likelihood. La selezione del modello finale deve bilanciare il miglioramento statistico con la complessità del modello (evitando l'overfitting).
+> **Scelta del Modello:** All'aumentare dei parametri aumenta generalmente la likelihood. La selezione finale deve basarsi sul miglioramento significativo del fit rispetto all'aumento della complessità del modello.
 
 ---
 
-## 4. Interpretazione dei Risultati
+## 4. Interpretazione dei File di Output
 
-I file di output principali generati da CAFE includono:
+I risultati principali generati da CAFE includono:
 
-* **`Base_results.txt` / `Gamma_results.txt**`: Riepilogo dei parametri del modello.
-* *Likelihood*: Bontà del fit del modello.
-* *Lambda ()*: Tasso di turnover (nascita/morte) delle famiglie geniche.
-* *Alpha ()*: (Solo nei modelli Gamma) Determina la forma della distribuzione Gamma; valori alti indicano una prevalenza di evoluzioni lente.
-* *Epsilon ()*: Porzione di famiglie geniche statiche (nessun turnover).
+* **`Base_results.txt` / `Gamma_results.txt**`: Riepilogo dei parametri.
+* **Likelihood:** Indica quanto il modello si adatta ai dati.
+* **Lambda ():** Tasso di turnover (nascita/morte) delle famiglie.
+* **Alpha ():** (Solo modelli Gamma) Determina la forma della distribuzione Gamma; valori alti indicano una prevalenza di evoluzioni lente.
+* **Epsilon ():** Stima della frazione di famiglie geniche statiche (nessun turnover).
 
 
-* **`Base_asr.tre`**: Ricostruzione degli Stati Ancestrali (Ancestral State Reconstruction).
+* **`Base_asr.tre`**: Ricostruzione degli Stati Ancestrali (*Ancestral State Reconstruction*).
 * Ogni nodo riporta il numero di geni inferito per quella famiglia.
-* I nodi marcati con un **asterisco (*)** indicano un'espansione o contrazione significativa rispetto al nodo genitore.
+* I nodi marcati con un **asterisco (*)** indicano un evento di espansione o contrazione significativo rispetto al nodo genitore.
 
 
-* **`Base_change.tab`**: Tabella che quantifica la differenza numerica (delta) di geni tra un nodo e il suo predecessore per ogni famiglia.
+* **`Base_change.tab`**: Tabella che riporta la differenza numerica (delta) di geni tra un nodo e il suo predecessore per ogni famiglia.
 * **`Base_clade_results.txt`**: Conteggio totale delle famiglie significativamente espanse o contratte per ogni clado.
-* **`Base_family_results.txt`**: Dettaglio per famiglia, include il p-value associato all'evento di espansione/contrazione e la significatività globale.
-
-```
+* **`Base_family_results.txt`**: Dettaglio per singola famiglia, include il p-value associato all'evento e la significatività globale (y/n).
