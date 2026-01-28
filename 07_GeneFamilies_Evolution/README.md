@@ -46,7 +46,7 @@ for k in {1..5}; do for n in {1..10}; do mkdir -p 00_1L/${k}K/${n}N; cafe5 -i Ge
 Per fare analisi con λ diverse tra clade, prepariamo un albero `.nwk` con le etichette dei lambda:
 
 ```
-((Anogam:2,Anoste:2):1,(Culqui:2,(Sabcya:1,(Aedalb:1,Aedaeg:1):1):1):1);
+(Anocul:45,(Anofun:25,(Anoste:20,(Anoalb:19,(Anogam:1.5,Anoara:1.5):17.5):1):5):20);
 ```
 
 E lanciamo i replicati:
