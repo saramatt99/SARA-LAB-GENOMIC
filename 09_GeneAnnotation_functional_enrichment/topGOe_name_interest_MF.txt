@@ -1,0 +1,23 @@
+GO.ID	Term	Annotated	Significant	Expected	Classic_Fisher
+GO:0005549	odorant binding	51	11	3.37	0.00038
+GO:0004984	olfactory receptor activity	52	11	3.43	0.00046
+GO:0030527	structural constituent of chromatin	15	5	0.99	0.0021
+GO:0004175	endopeptidase activity	155	20	10.23	0.00275
+GO:0008528	G protein-coupled peptide receptor activity	38	8	2.51	0.00282
+GO:0016229	steroid dehydrogenase activity	2	2	0.13	0.00434
+GO:0008061	chitin binding	26	6	1.72	0.00589
+GO:0004568	chitinase activity	26	6	1.72	0.00589
+GO:0008237	metallopeptidase activity	113	15	7.46	0.00693
+GO:0017171	serine hydrolase activity	118	15	7.79	0.01026
+GO:0008188	neuropeptide receptor activity	24	5	1.58	0.01823
+GO:0004252	serine-type endopeptidase activity	83	11	5.48	0.01959
+GO:0004661	protein geranylgeranyltransferase activity	4	2	0.26	0.02383
+GO:0000774	adenyl-nucleotide exchange factor activity	4	2	0.26	0.02383
+GO:0015280	ligand-gated sodium channel activity	26	5	1.72	0.02532
+GO:0008236	serine-type peptidase activity	89	11	5.87	0.03121
+GO:0008241	peptidyl-dipeptidase activity	11	3	0.73	0.03159
+GO:0008318	protein prenyltransferase activity	5	2	0.33	0.038
+GO:1901682	sulfur compound transmembrane transporter activity	5	2	0.33	0.038
+GO:0042162	telomeric DNA binding	5	2	0.33	0.038
+GO:0005272	sodium channel activity	29	5	1.91	0.03892
+GO:0016616	oxidoreductase activity, acting on the CH-OH group of donors, NAD or NADP as acceptor	49	7	3.23	0.0401

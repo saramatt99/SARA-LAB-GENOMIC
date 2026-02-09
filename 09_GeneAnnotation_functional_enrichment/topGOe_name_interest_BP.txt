@@ -1,0 +1,36 @@
+GO.ID	Term	Annotated	Significant	Expected	Classic_Fisher
+GO:0050911	detection of chemical stimulus involved in sensory perception of smell	51	11	3.38	4e-04
+GO:0006688	glycosphingolipid biosynthetic process	5	3	0.33	0.0026
+GO:0060261	positive regulation of transcription initiation by RNA polymerase II	2	2	0.13	0.0044
+GO:0034972	histone H3-R26 methylation	2	2	0.13	0.0044
+GO:0006032	chitin catabolic process	26	6	1.72	0.006
+GO:0006397	mRNA processing	127	16	8.41	0.0093
+GO:0000022	mitotic spindle elongation	3	2	0.2	0.0126
+GO:0051256	mitotic spindle midzone assembly	3	2	0.2	0.0126
+GO:0007610	behavior	41	7	2.72	0.0168
+GO:0000398	mRNA splicing, via spliceosome	94	12	6.23	0.0205
+GO:0000375	RNA splicing, via transesterification reactions	94	12	6.23	0.0205
+GO:0000377	RNA splicing, via transesterification reactions with bulged adenosine as nucleophile	94	12	6.23	0.0205
+GO:0007617	mating behavior	34	6	2.25	0.0225
+GO:0007619	courtship behavior	34	6	2.25	0.0225
+GO:0008049	male courtship behavior	34	6	2.25	0.0225
+GO:0019098	reproductive behavior	34	6	2.25	0.0225
+GO:0060179	male mating behavior	34	6	2.25	0.0225
+GO:0046130	purine ribonucleoside catabolic process	4	2	0.26	0.024
+GO:0046102	inosine metabolic process	4	2	0.26	0.024
+GO:0046103	inosine biosynthetic process	4	2	0.26	0.024
+GO:0051255	spindle midzone assembly	4	2	0.26	0.024
+GO:0006152	purine nucleoside catabolic process	4	2	0.26	0.024
+GO:0006154	adenosine catabolic process	4	2	0.26	0.024
+GO:0046085	adenosine metabolic process	4	2	0.26	0.024
+GO:0072348	sulfur compound transport	4	2	0.26	0.024
+GO:0098732	macromolecule deacylation	10	3	0.66	0.0244
+GO:0035601	protein deacylation	10	3	0.66	0.0244
+GO:0008380	RNA splicing	111	13	7.35	0.031
+GO:0016575	histone deacetylation	5	2	0.33	0.0383
+GO:0036265	RNA (guanine-N7)-methylation	5	2	0.33	0.0383
+GO:0006476	protein deacetylation	5	2	0.33	0.0383
+GO:0042256	cytosolic ribosome assembly	5	2	0.33	0.0383
+GO:0018344	protein geranylgeranylation	5	2	0.33	0.0383
+GO:0050684	regulation of mRNA processing	20	4	1.32	0.0394
+GO:0007635	chemosensory behavior	40	6	2.65	0.046

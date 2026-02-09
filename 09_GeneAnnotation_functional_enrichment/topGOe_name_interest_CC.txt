@@ -1,0 +1,17 @@
+GO.ID	Term	Annotated	Significant	Expected	Classic_Fisher
+GO:0005615	extracellular space	370	51	24.41	2.4e-07
+GO:0031012	extracellular matrix	192	30	12.67	0.00049
+GO:0062023	collagen-containing extracellular matrix	45	9	2.97	0.00229
+GO:0005684	U2-type spliceosomal complex	23	6	1.52	0.00306
+GO:0005765	lysosomal membrane	25	6	1.65	0.0048
+GO:0005686	U2 snRNP	12	4	0.79	0.00604
+GO:0000786	nucleosome	13	4	0.86	0.00828
+GO:0005576	extracellular region	442	61	29.16	0.01204
+GO:0071014	post-mRNA release spliceosomal complex	8	3	0.53	0.01244
+GO:0005674	transcription factor TFIIF complex	3	2	0.2	0.01246
+GO:0071007	U2-type catalytic step 2 spliceosome	4	2	0.26	0.02384
+GO:0005665	RNA polymerase II, core complex	10	3	0.66	0.02415
+GO:0060293	germ plasm	5	2	0.33	0.03801
+GO:0043186	P granule	5	2	0.33	0.03801
+GO:0045495	pole plasm	5	2	0.33	0.03801
+GO:0000445	THO complex part of transcription export complex	5	2	0.33	0.03801
